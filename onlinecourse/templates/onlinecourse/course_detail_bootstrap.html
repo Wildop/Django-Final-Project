@@ -62,6 +62,12 @@
                 </div>
 
             -->
+            {% if user.is_authenticated %}
+            <button type="button" data-toggle="collapse" href="#exam" class="btn btn-info">Start Exam</button>
+            <div id="exam" class="collapse">
+                <p>Hello</p>
+            </div>
+            {% endif %}
 
             <!-- <HINT> If user is authenticated, show course exam with a list of question -->
 
