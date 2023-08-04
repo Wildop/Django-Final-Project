@@ -105,9 +105,9 @@ class Question(models.Model):
     # Foreign key to lesson
     # question text
     # question grade/mark
-    question_text = models.TextField()
+    question_text = models.TextField(default="This is the default question text.")
     grade = models.FloatField(default=1.0)
-    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    lesson_id = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     # <HINT> A sample model method to calculate if learner get the score of the question
     def is_get_score(self, selected_ids):
@@ -117,6 +117,9 @@ class Question(models.Model):
             return True
         else:
             return False
+    
+    def __str__(self):
+        return self.question_text
 
 
 #  <HINT> Create a Choice Model with:
@@ -130,6 +133,9 @@ class Choice(models.Model):
     is_correct = models.BooleanField(default=False)
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.choice_text
+
 # <HINT> The submission model
 # One enrollment could have multiple submission
 # One submission could have multiple choices
@@ -137,4 +143,3 @@ class Choice(models.Model):
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     choices = models.ManyToManyField(Choice)
-#Other fields and methods you would like to design

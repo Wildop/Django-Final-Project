@@ -8,7 +8,7 @@ class QuestionInline(admin.StackedInline):
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
-    extra = 4
+    extra = 2
 
 class LessonInline(admin.StackedInline):
     model = Lesson
@@ -24,7 +24,6 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class LessonAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
     list_display = ['title']
 
 
